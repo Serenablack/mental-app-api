@@ -1,6 +1,6 @@
 -- Create emotions table for Emotion Wheel taxonomy
 CREATE TABLE IF NOT EXISTS emotions (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     key VARCHAR(100) UNIQUE NOT NULL,
     label VARCHAR(255) NOT NULL,
     parent_key VARCHAR(100),
@@ -26,5 +26,6 @@ CREATE TRIGGER update_emotions_updated_at
     BEFORE UPDATE ON emotions
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
+
 
 
