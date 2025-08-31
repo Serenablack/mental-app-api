@@ -1,29 +1,30 @@
 package com.mentalapp.dto;
 
-import com.mentalapp.entity.SuggestedActivity;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import java.time.LocalDate;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class SuggestedActivityResponse {
 
     private Long id;
-    private String title;
-    private String description;
-    private SuggestedActivity.ActivityCategory category;
-    private Integer estimatedDurationMinutes;
-    private SuggestedActivity.DifficultyLevel difficultyLevel;
+    private Long moodEntryId;
+    private String activityDescription;
     private Boolean isCompleted;
     private LocalDateTime completedAt;
-    private LocalDate suggestedDate;
+    private String activityType;
+    private Integer estimatedDurationMinutes;
+    private Integer difficultyLevel;
+    private Integer priorityLevel;
+    private String status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private Long moodEntryId;
 }
+
+

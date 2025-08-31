@@ -1,36 +1,41 @@
 package com.mentalapp.dto;
 
-import com.mentalapp.entity.MoodEntry;
 import jakarta.validation.constraints.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import java.util.List;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class MoodEntryCreateRequest {
 
-    @NotEmpty(message = "At least one emotion must be selected")
-    @Size(min = 1, max = 10, message = "You can select between 1 and 10 emotions")
-    private List<String> emotionKeys;
+    @NotNull(message = "Entry date is required")
+    private LocalDateTime entryDate;
 
-    @Size(max = 500, message = "Location must be less than 500 characters")
+    @Size(max = 255, message = "Location must be less than 255 characters")
     private String location;
 
-    @NotNull(message = "Environment selection is required")
-    private MoodEntry.Environment environment;
+    @Size(max = 50, message = "Comfort environment must be less than 50 characters")
+    private String comfortEnvironment;
 
     @Size(max = 5000, message = "Description must be less than 5000 characters")
     private String description;
 
-    @NotNull(message = "Energy level is required")
     @Min(value = 1, message = "Energy level must be between 1 and 5")
     @Max(value = 5, message = "Energy level must be between 1 and 5")
     private Integer energyLevel;
 
-    private Boolean isVoiceInput = false;
+    @Size(max = 100, message = "Passion must be less than 100 characters")
+    private String passion;
+
+    @NotEmpty(message = "At least one emotion must be selected")
+    @Size(min = 2, message = "At least two emotions must be selected")
+    private Set<Long> emotionIds = new HashSet<>();
 }
